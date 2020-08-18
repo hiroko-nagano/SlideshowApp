@@ -23,34 +23,40 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
+        ImageView.image = image1
+        
     }
     
     @IBOutlet weak var nextview: UIButton!
     @IBAction func next(_ sender: Any) {
-        if count  == 0 {
-            ImageView.image = image2
-        } else if count == 1 {
-            ImageView.image = image3
+        
+        if count  == 1 {
+            ImageView.image = images[1]
         } else if count == 2 {
-            ImageView.image = image4
+            ImageView.image = images[2]
         } else if count == 3 {
-            ImageView.image = image1
-            count = -1
+            ImageView.image = images[3]
+        } else if count == 4 {
+            ImageView.image = images[0]
+            count = 0
         }
         count += 1
+        
     }
+    
     
     @IBOutlet weak var backview: UIButton!
     @IBAction func back(_ sender: Any) {
         if count  == 3 {
-            ImageView.image = image3
+            ImageView.image = images[1]
         } else if count == 2 {
-            ImageView.image = image2
+            ImageView.image = images[0]
         } else if count == 1 {
-            ImageView.image = image1
+            ImageView.image = images[3]
         } else if count == 0 {
-            ImageView.image = image4
+            ImageView.image = images[2]
             count = 4
         }
         count -= 1
@@ -80,10 +86,10 @@ class ViewController: UIViewController {
     
     @objc func changeimage() {
         count += 1
-        if (count == 4) {
-            count = 0
+        if (count == 5) {
+            count = 1
         }
-        ImageView.image = images[count]
+        ImageView.image = images[count - 1]
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
